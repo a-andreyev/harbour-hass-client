@@ -63,7 +63,10 @@ Page {
                 EnterKey.enabled: text || inputMethodComposing
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
                 onTextChanged: {
-                    appRoot.host_socket = text
+                    var hostSocket = text.replace(/^https?\:\/\//i, "").replace(/\/$/, "");;
+                    if (appRoot.host_socket!==hostSocket) {
+                        appRoot.host_socket = hostSocket
+                    }
                 }
             }
         }
